@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>삼성화재 해외사업 뉴스 카드뉴스 - {{ report_date }}</title>
+<style>
+  :root {
+    --navy: #0F2A4A;
+    --blue: #1B4F91;
+    --light-blue: #E7F0FB;
+    --gray: #6B7280;
+    --light-gray: #F4F5F7;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Malgun Gothic", Arial, sans-serif;
+    background: var(--light-gray);
+    color: #1F2937;
+  }
+  header.report-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 28px 40px;
+  }
+  header.report-header h1 { margin: 0 0 6px 0; font-size: 24px; }
+  header.report-header p { margin: 0; color: #C7D6EA; font-size: 14px; }
+
+  .card {
+    min-height: 100vh;
+    padding: 48px 60px;
+    border-bottom: 1px solid #E5E7EB;
+    page-break-after: always;
+    background: var(--white);
+  }
+  .card-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .badge-samsung {
+    background: #B91C1C;
+    margin-bottom: 14px;
+  }
+  .country-tag {
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .stars { color: #F59E0B; font-size: 18px; letter-spacing: 2px; }
+  h2.headline {
+    font-size: 28px;
+    color: var(--navy);
+    margin: 10px 0 20px 0;
+    line-height: 1.35;
+  }
+  .local-time { color: var(--gray); font-size: 13px; margin-bottom: 4px; }
+  .summary-box {
+    background: var(--light-blue);
+    border-left: 4px solid var(--blue);
+    padding: 20px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .why-box {
+    background: var(--light-gray);
+    padding: 16px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .why-box strong { color: var(--blue); }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--gray);
+    border-top: 1px solid #E5E7EB;
+    padding-top: 14px;
+    margin-top: 30px;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .empty-card { display: flex; align-items: center; justify-content: center; }
+  .empty-card p { font-size: 20px; color: var(--gray); }
+
+  @media print {
+    .card { page-break-after: always; min-height: 100vh; }
+    body { background: var(--white); }
+  }
+</style>
+</head>
+<body>
+
+<header class="report-header">
+  <h1>삼성화재 해외사업 뉴스 카드뉴스</h1>
+  <p>{{ report_date }} 생성 · 미국 / 영국·유럽 / 싱가포르 / 베트남 / 인도네시아 / 중국</p>
+</header>
+
+{% for country, articles in countries.items() %}
+  {% if articles %}
+    {% for a in articles %}
+    <section class="card">
+      {% if a.is_samsung_fire_direct %}
+        <span class="badge badge-samsung">★ 삼성화재 직접 관련</span><br>
+      {% endif %}
+      <div class="card-meta-row">
+        <span class="badge">우선순위 {{ a.priority_rank }} · {{ a.keyword_label }}</span>
+        <span class="country-tag">{{ country }}</span>
+      </div>
+      <div class="local-time">현지 시각: {{ a.local_time_display }}</div>
+      <div class="stars">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</div>
+      <h2 class="headline">{{ a.title }}</h2>
+      <div class="summary-box">{{ a.summary }}</div>
+      <div class="why-box"><strong>왜 중요한가:</strong> {{ a.why_important }}</div>
+      <div class="footer-row">
+        <span>출처: {{ a.source_name }}</span>
+        <a href="{{ a.url }}" target="_blank">원문 보기 →</a>
+      </div>
+    </section>
+    {% endfor %}
+  {% else %}
+    <section class="card empty-card">
+      <p>[{{ country }}] 확인된 뉴스 없음</p>
+    </section>
+  {% endif %}
+{% endfor %}
+
+</body>
+</html>

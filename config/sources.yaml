@@ -1,0 +1,36 @@
+# 참고용 소스 목록 문서입니다.
+# 실제로 프로그램이 사용하는 값은 settings.py의 COUNTRY_SOURCES 입니다.
+# (settings.py를 단일 진실 소스로 유지하기 위해 이 파일은 값을 자동으로 읽어오지 않습니다.
+#  소스를 변경하려면 settings.py의 COUNTRY_SOURCES를 직접 수정하세요.)
+
+international_wire_services:
+  - Reuters
+  - AP News
+  - Bloomberg
+  - AFP
+
+united_states:
+  media: [Wall Street Journal, CNBC, Fortune, Business Insider]
+  regulators: [Federal Reserve, NAIC]
+
+uk_europe:
+  media: [Financial Times, The Economist, Euronews]
+  regulators: [PRA, FCA]
+
+singapore:
+  media: [CNA, The Business Times]
+  regulators: [MAS]
+
+vietnam:
+  media: [Vietnam News, VnExpress, Vietnam Investment Review]
+  regulators: [Ministry of Finance, State Bank of Vietnam]
+
+indonesia:
+  media: [Jakarta Post, Antara]
+  regulators: [OJK]
+
+china:
+  media: [Xinhua, China Daily, Caixin]
+  regulators: [NFRA, PBOC]
+
+blocked_domestic_sources: "한국 언론사(.co.kr 등)는 settings.py의 BLOCKED_DOMAINS_KEYWORDS에서 전면 차단됨"
