@@ -13,9 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "")  # 없어도 동작 (최종 백업 단계만 스킵됨)
 
-GMAIL_ADDRESS = os.environ.get("GMAIL_ADDRESS", "")
-GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD", "")
-RECEIVER_EMAIL = os.environ.get("RECEIVER_EMAIL", "")
+GMAIL_ADDRESS = os.environ.get("GMAIL_ADDRESS", "").strip()
+GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD", "").strip()
+RECEIVER_EMAIL = os.environ.get("RECEIVER_EMAIL", "").strip()
 
 CLAUDE_MODEL = "claude-sonnet-4-6"
 
