@@ -27,7 +27,7 @@ def _add_title_slide(prs: Presentation, report_date: str):
 
     tb = slide.shapes.add_textbox(Inches(0.8), Inches(3.0), Inches(11.7), Inches(1.5))
     tf = tb.text_frame
-    tf.text = "삼성화재 해외사업 뉴스 카드뉴스"
+    tf.text = "삼성화재 글로벌운영팀 카드뉴스"
     tf.paragraphs[0].font.size = Pt(36)
     tf.paragraphs[0].font.bold = True
     tf.paragraphs[0].font.color.rgb = WHITE
@@ -91,12 +91,14 @@ def _add_card_slide(prs: Presentation, country: str, article) -> None:
     sf.word_wrap = True
     sf.text = article.summary
     sf.paragraphs[0].font.size = Pt(14)
+    sf.paragraphs[0].font.color.rgb = RGBColor(0x1F, 0x29, 0x37)
     y += Inches(2.0)
 
     why = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.8))
     why.text_frame.word_wrap = True
     why.text_frame.text = f"왜 중요한가: {article.why_important}"
     why.text_frame.paragraphs[0].font.size = Pt(13)
+    why.text_frame.paragraphs[0].font.color.rgb = RGBColor(0x1F, 0x29, 0x37)
     y += Inches(0.9)
 
     footer = slide.shapes.add_textbox(Inches(0.5), Inches(7.0), Inches(12.3), Inches(0.4))
