@@ -23,17 +23,18 @@ def collect_for_country(country: str) -> List[Article]:
     for idx, group in enumerate(SEARCH_KEYWORD_GROUPS, start=1):
         tag, label, keywords = group["tag"], group["label"], group["keywords"]
 
-        for kw in keywords:
-            articles = collect_with_fallback(
-                keyword=kw,
-                domains=src["domains"],
-                country=country,
-                keyword_tag=tag,
-                priority_rank=idx,
-                rss_feeds=src.get("rss", {}),
-                newsapi_key=NEWSAPI_KEY,
-            )
-            all_articles.extend(articles)
+        # 같은 그룹의 키워드는 OR로 묶어서 한 번에 검색 (그룹당 API 호출 1회로 속도 개선)
+        combined_keyword = " OR ".join(f"({kw})" for kw in keywords)
+        articles = collect_with_fallback(
+            keyword=combined_keyword,
+            domains=src["domains"],
+            country=country,
+            keyword_tag=tag,
+            priority_rank=idx,
+            rss_feeds=src.get("rss", {}),
+            newsapi_key=NEWSAPI_KEY,
+        )
+        all_articles.extend(articles)
 
         # 금융당국 발표(④)는 규제기관 RSS를 직접 수집
         if tag == "regulator" and src.get("regulators"):
