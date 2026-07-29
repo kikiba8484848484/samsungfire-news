@@ -20,6 +20,7 @@ class Article:
     summary: str = ""
     importance_stars: int = 0
     why_important: str = ""
+    headline_ko: str = ""
 
     # 렌더링 단계에서 채워짐
     local_time_display: str = ""

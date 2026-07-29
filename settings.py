@@ -111,7 +111,7 @@ COUNTRY_SOURCES = {
             "Jakarta Post": "https://www.thejakartapost.com/rss",
             "Antara News": "https://en.antaranews.com/rss/business.xml",
         },
-        "domains": ["thejakartapost.com", "antaranews.com",
+        "domains": ["thejakartapost.com", "antaranews.com", "jakartaglobe.id",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "OJK": "https://www.ojk.go.id/en/berita-dan-kegiatan/siaran-pers/default.aspx",
@@ -122,8 +122,8 @@ COUNTRY_SOURCES = {
             "Xinhua": "http://www.xinhuanet.com/english/rss/bizrss.xml",
             "China Daily Business": "https://www.chinadaily.com.cn/rss/business_rss.xml",
         },
-        "domains": ["xinhuanet.com", "chinadaily.com.cn", "caixinglobal.com",
-                     "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
+        "domains": ["xinhuanet.com", "news.cn", "chinadaily.com.cn", "caixinglobal.com",
+                     "scmp.com", "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "PBOC": "http://www.pbc.gov.cn/rss/rss.xml",
         },
@@ -137,14 +137,21 @@ SEARCH_KEYWORD_GROUPS = [
     {"tag": "samsung_fire", "label": "삼성화재 관련 뉴스",
      "keywords": ["Samsung Fire", "Samsung Fire & Marine Insurance"]},
     {"tag": "global_insurance", "label": "글로벌 보험산업 뉴스",
-     "keywords": ["insurance industry", "insurer", "reinsurance", "insurance regulation"]},
+     "keywords": ["insurance industry", "insurer", "reinsurance", "insurance regulation",
+                  "life insurance", "non-life insurance", "insurance premium"]},
     {"tag": "samsung_group", "label": "삼성그룹 계열사 뉴스",
-     "keywords": ["Samsung Electronics", "Samsung C&T", "Samsung SDI", "Samsung Group"]},
+     "keywords": ["Samsung Electronics", "Samsung C&T", "Samsung SDI", "Samsung Group", "Samsung Life"]},
     {"tag": "regulator", "label": "금융당국 발표",
-     "keywords": ["central bank", "insurance regulator", "financial supervisory"]},
+     "keywords": ["central bank", "insurance regulator", "financial supervisory",
+                  "interest rate decision", "monetary policy", "insurance capital rules",
+                  "solvency requirement"]},
     {"tag": "economy", "label": "경제·산업 뉴스",
      "keywords": ["Korean company", "economy", "market"]},
 ]
 
-MAX_ARTICLES_PER_COUNTRY = 5
+# 최종 카드뉴스에 반영할 기준
+MIN_IMPORTANCE_STARS = 3          # 이 미만(1~2점) 기사는 최종 결과에서 제외
+MAX_ARTICLES_PER_COUNTRY_COLLECT = 8  # 요약 전, 국가별로 넉넉히 수집해둘 후보 수
+MAX_ARTICLES_PER_COUNTRY = 3      # 요약/중요도 산정 후, 국가별 PPT에 실을 최종 개수
+TOP_N_OVERALL_FOR_OVERVIEW = 5    # 인포그래픽 개요 페이지에 실을 전체 중 상위 개수
 LOOKBACK_HOURS = 24

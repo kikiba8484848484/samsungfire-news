@@ -61,10 +61,7 @@ def _add_card_slide(prs: Presentation, country: str, article) -> None:
         y += Inches(0.55)
 
     meta = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.4))
-    meta.text_frame.text = (
-        f"우선순위 {article.priority_rank} · {article.keyword_label}    |    {country}    |    "
-        f"{article.local_time_display}"
-    )
+    meta.text_frame.text = f"{country}    |    {article.local_time_display}"
     meta.text_frame.paragraphs[0].font.size = Pt(12)
     meta.text_frame.paragraphs[0].font.color.rgb = GRAY
     y += Inches(0.45)
@@ -75,13 +72,21 @@ def _add_card_slide(prs: Presentation, country: str, article) -> None:
     stars.text_frame.paragraphs[0].font.color.rgb = RGBColor(0xF5, 0x9E, 0x0B)
     y += Inches(0.5)
 
-    headline = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(1.0))
+    headline = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.85))
     headline.text_frame.word_wrap = True
     headline.text_frame.text = article.title
-    headline.text_frame.paragraphs[0].font.size = Pt(24)
+    headline.text_frame.paragraphs[0].font.size = Pt(22)
     headline.text_frame.paragraphs[0].font.bold = True
     headline.text_frame.paragraphs[0].font.color.rgb = NAVY
-    y += Inches(1.1)
+    y += Inches(0.85)
+
+    if getattr(article, "headline_ko", ""):
+        headline_ko = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.5))
+        headline_ko.text_frame.word_wrap = True
+        headline_ko.text_frame.text = article.headline_ko
+        headline_ko.text_frame.paragraphs[0].font.size = Pt(15)
+        headline_ko.text_frame.paragraphs[0].font.color.rgb = RGBColor(0x37, 0x41, 0x51)
+        y += Inches(0.5)
 
     summary_box = slide.shapes.add_shape(1, Inches(0.5), y, Inches(12.3), Inches(1.8))
     summary_box.fill.solid()

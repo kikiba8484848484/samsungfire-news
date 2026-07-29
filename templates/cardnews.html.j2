@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>삼성화재 해외사업 뉴스 카드뉴스 - {{ report_date }}</title>
+<title>삼성화재 글로벌운영팀 카드뉴스 - {{ report_date }}</title>
 <style>
   :root {
     --navy: #0F2A4A;
@@ -27,6 +27,57 @@
   header.report-header h1 { margin: 0 0 6px 0; font-size: 24px; }
   header.report-header p { margin: 0; color: #C7D6EA; font-size: 14px; }
 
+  /* ---------- 개요(인포그래픽) 섹션 ---------- */
+  .overview-section {
+    padding: 40px 50px;
+    background: var(--white);
+    border-bottom: 8px solid var(--light-gray);
+  }
+  .overview-section h2 {
+    color: var(--navy);
+    font-size: 20px;
+    margin: 0 0 20px 0;
+  }
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .overview-card {
+    background: var(--light-blue);
+    border-left: 5px solid var(--blue);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .overview-card .oc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .overview-card .oc-country {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .overview-card .oc-stars { color: #F59E0B; font-size: 13px; }
+  .overview-card .oc-headline {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .overview-card .oc-headline-ko {
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+  .overview-empty {
+    color: var(--gray);
+    font-size: 14px;
+  }
+
   .card {
     min-height: 100vh;
     padding: 48px 60px;
@@ -36,7 +87,7 @@
   }
   .card-meta-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 18px;
   }
@@ -60,10 +111,15 @@
   }
   .stars { color: #F59E0B; font-size: 18px; letter-spacing: 2px; }
   h2.headline {
-    font-size: 28px;
+    font-size: 26px;
     color: var(--navy);
-    margin: 10px 0 20px 0;
+    margin: 10px 0 6px 0;
     line-height: 1.35;
+  }
+  .headline-ko {
+    font-size: 17px;
+    color: #374151;
+    margin: 0 0 20px 0;
   }
   .local-time { color: var(--gray); font-size: 13px; margin-bottom: 4px; }
   .summary-box {
@@ -74,6 +130,7 @@
     font-size: 16px;
     line-height: 1.7;
     margin-bottom: 20px;
+    color: #1F2937;
   }
   .why-box {
     background: var(--light-gray);
@@ -106,9 +163,29 @@
 <body>
 
 <header class="report-header">
-  <h1>삼성화재 해외사업 뉴스 카드뉴스</h1>
+  <h1>삼성화재 글로벌운영팀 카드뉴스</h1>
   <p>{{ report_date }} 생성 · 미국 / 영국·유럽 / 싱가포르 / 베트남 / 인도네시아 / 중국</p>
 </header>
+
+<section class="overview-section">
+  <h2>오늘의 핵심 뉴스 한눈에 보기</h2>
+  {% if overview_articles %}
+  <div class="overview-grid">
+    {% for a in overview_articles %}
+    <div class="overview-card">
+      <div class="oc-top">
+        <span class="oc-country">{{ a.country }}</span>
+        <span class="oc-stars">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</span>
+      </div>
+      <div class="oc-headline">{{ a.title }}</div>
+      {% if a.headline_ko %}<div class="oc-headline-ko">{{ a.headline_ko }}</div>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="overview-empty">확인된 핵심 뉴스가 없습니다.</p>
+  {% endif %}
+</section>
 
 {% for country, articles in countries.items() %}
   {% if articles %}
@@ -118,12 +195,12 @@
         <span class="badge badge-samsung">★ 삼성화재 직접 관련</span><br>
       {% endif %}
       <div class="card-meta-row">
-        <span class="badge">우선순위 {{ a.priority_rank }} · {{ a.keyword_label }}</span>
         <span class="country-tag">{{ country }}</span>
       </div>
       <div class="local-time">현지 시각: {{ a.local_time_display }}</div>
       <div class="stars">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</div>
       <h2 class="headline">{{ a.title }}</h2>
+      {% if a.headline_ko %}<p class="headline-ko">{{ a.headline_ko }}</p>{% endif %}
       <div class="summary-box">{{ a.summary }}</div>
       <div class="why-box"><strong>왜 중요한가:</strong> {{ a.why_important }}</div>
       <div class="footer-row">

@@ -4,7 +4,7 @@ from typing import Dict, List
 from news.models import Article
 from news.filter_time import filter_recent_24h
 from news.dedup import block_domestic_sources, remove_previously_seen, dedup_same_event
-from news.priority import mark_samsung_fire_direct, sort_and_cap
+from news.priority import mark_samsung_fire_direct, sort_and_cap_precollect
 from apis.fallback_manager import collect_from_rss_feeds, collect_with_fallback
 from settings import COUNTRY_SOURCES, SEARCH_KEYWORD_GROUPS, NEWSAPI_KEY
 
@@ -53,9 +53,9 @@ def collect_for_country(country: str) -> List[Article]:
     all_articles = dedup_same_event(all_articles)
     all_articles = remove_previously_seen(all_articles)
     mark_samsung_fire_direct(all_articles)
-    final_articles = sort_and_cap(all_articles)
+    final_articles = sort_and_cap_precollect(all_articles)
 
-    logger.info(f"{country}: 최종 {len(final_articles)}건 선정")
+    logger.info(f"{country}: 요약 대상 {len(final_articles)}건 선정 (1차 컷)")
     return final_articles
 
 

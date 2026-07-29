@@ -92,8 +92,13 @@ python main.py
 - 국가별 언론사/RSS/규제기관 목록: `settings.py`의 `COUNTRY_SOURCES` (참고 문서: `config/sources.yaml`)
 - 국내 언론 차단 키워드: `settings.py`의 `BLOCKED_DOMAINS_KEYWORDS`
 - 검색 우선순위(①~⑤): `settings.py`의 `SEARCH_KEYWORD_GROUPS`
-- 국가별 최대 출력 건수: `settings.py`의 `MAX_ARTICLES_PER_COUNTRY` (기본 5)
+- 최종 카드뉴스 기준: `settings.py`의 `MIN_IMPORTANCE_STARS`(최소 중요도, 기본 3),
+  `MAX_ARTICLES_PER_COUNTRY`(PPT 기준 국가별 최종 개수, 기본 3),
+  `MAX_ARTICLES_PER_COUNTRY_COLLECT`(요약 전 후보 확보 개수, 기본 8),
+  `TOP_N_OVERALL_FOR_OVERVIEW`(이메일 상단 개요에 실을 전체 상위 개수, 기본 5)
 - 조회 기간(현지 기준): `settings.py`의 `LOOKBACK_HOURS` (기본 24)
+- 이메일 수신자 여러 명 등록: GitHub Secrets의 `RECEIVER_EMAIL` 값에 콤마(,)로 구분해서 입력
+  (예: `a@gmail.com,b@naver.com`)
 
 ## 7. 알려진 제약
 
