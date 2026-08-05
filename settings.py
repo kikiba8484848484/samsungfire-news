@@ -147,7 +147,7 @@ SEARCH_KEYWORD_GROUPS = [
 ]
 
 # 최종 카드뉴스에 반영할 기준
-MIN_IMPORTANCE_STARS = 3          # 이 미만(1~2점) 기사는 최종 결과에서 제외
+MIN_IMPORTANCE_STARS = 2          # 이 미만(1~2점) 기사는 최종 결과에서 제외
 MAX_ARTICLES_PER_COUNTRY_COLLECT = 8  # 요약 전, 국가별로 넉넉히 수집해둘 후보 수
 MAX_ARTICLES_PER_COUNTRY = 3      # 요약/중요도 산정 후, 국가별 PPT에 실을 최종 개수
 TOP_N_OVERALL_FOR_OVERVIEW = 5    # 인포그래픽 개요 페이지에 실을 전체 중 상위 개수
