@@ -60,11 +60,11 @@ BLOCKED_DOMAINS_KEYWORDS = [
 COUNTRY_SOURCES = {
     "미국": {
         "rss": {
-            "WSJ Markets": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain",
             "CNBC Business": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147",
             "Fortune": "https://fortune.com/feed/",
+            "Insurance Journal": "https://www.insurancejournal.com/feed/",
         },
-        "domains": ["wsj.com", "cnbc.com", "fortune.com", "businessinsider.com",
+        "domains": ["cnbc.com", "fortune.com", "businessinsider.com", "insurancejournal.com", "marketwatch.com",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "Federal Reserve": "https://www.federalreserve.gov/feeds/press_all.xml",
@@ -73,10 +73,11 @@ COUNTRY_SOURCES = {
     },
     "영국/유럽": {
         "rss": {
-            "Financial Times": "https://www.ft.com/rss/home",
+            "BBC Business": "https://feeds.bbci.co.uk/news/business/rss.xml",
+            "Insurance Business UK": "https://www.insurancebusinessmag.com/uk/rss/",
             "Euronews Business": "https://www.euronews.com/rss?level=theme&name=business",
         },
-        "domains": ["ft.com", "economist.com", "euronews.com",
+        "domains": ["bbc.com", "bbc.co.uk", "insurancebusinessmag.com", "euronews.com", "insurancetimes.co.uk",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "Bank of England / PRA": "https://www.bankofengland.co.uk/rss/news",
@@ -86,9 +87,9 @@ COUNTRY_SOURCES = {
     "싱가포르": {
         "rss": {
             "CNA Business": "https://www.channelnewsasia.com/rssfeeds/8395986",
-            "Business Times": "https://www.businesstimes.com.sg/rss/singapore",
+            "IBTimes Singapore": "https://www.ibtimes.sg/rss",
         },
-        "domains": ["channelnewsasia.com", "businesstimes.com.sg",
+        "domains": ["channelnewsasia.com", "sbr.com.sg", "todayonline.com", "ibtimes.sg", "insurancebusinessmag.com",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "MAS": "https://www.mas.gov.sg/rss-feed",
@@ -100,7 +101,7 @@ COUNTRY_SOURCES = {
             "VnExpress International": "https://e.vnexpress.net/rss/business.rss",
             "Vietnam Investment Review": "https://vir.com.vn/rss/home.rss",
         },
-        "domains": ["vietnamnews.vn", "e.vnexpress.net", "vir.com.vn",
+        "domains": ["vietnamnews.vn", "e.vnexpress.net", "vir.com.vn", "vietnamplus.vn", "hanoitimes.vn",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "State Bank of Vietnam": "https://sbv.gov.vn/webcenter/portal/en/home/sbv/news/rss",
@@ -108,10 +109,9 @@ COUNTRY_SOURCES = {
     },
     "인도네시아": {
         "rss": {
-            "Jakarta Post": "https://www.thejakartapost.com/rss",
             "Antara News": "https://en.antaranews.com/rss/news.xml",
         },
-        "domains": ["thejakartapost.com", "antaranews.com", "jakartaglobe.id",
+        "domains": ["antaranews.com", "jakartaglobe.id", "en.tempo.co", "kontan.co.id", "insurancebusinessmag.com",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "OJK": "https://www.ojk.go.id/en/berita-dan-kegiatan/siaran-pers/default.aspx",
@@ -122,8 +122,8 @@ COUNTRY_SOURCES = {
             "China Daily Business": "http://www.chinadaily.com.cn/rss/bizchina_rss.xml",
             "ECNS (China News Service)": "http://www.ecns.cn/rss/rss.xml",
         },
-        "domains": ["xinhuanet.com", "news.cn", "chinadaily.com.cn", "caixinglobal.com",
-                     "scmp.com", "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
+        "domains": ["xinhuanet.com", "news.cn", "chinadaily.com.cn", "ecns.cn", "globaltimes.cn",
+                     "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "PBOC": "http://www.pbc.gov.cn/rss/rss.xml",
         },
