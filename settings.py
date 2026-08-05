@@ -109,7 +109,7 @@ COUNTRY_SOURCES = {
     "인도네시아": {
         "rss": {
             "Jakarta Post": "https://www.thejakartapost.com/rss",
-            "Antara News": "https://en.antaranews.com/rss/business.xml",
+            "Antara News": "https://en.antaranews.com/rss/news.xml",
         },
         "domains": ["thejakartapost.com", "antaranews.com", "jakartaglobe.id",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
@@ -119,8 +119,8 @@ COUNTRY_SOURCES = {
     },
     "중국": {
         "rss": {
-            "Xinhua": "http://www.xinhuanet.com/english/rss/bizrss.xml",
-            "China Daily Business": "https://www.chinadaily.com.cn/rss/business_rss.xml",
+            "China Daily Business": "http://www.chinadaily.com.cn/rss/bizchina_rss.xml",
+            "ECNS (China News Service)": "http://www.ecns.cn/rss/rss.xml",
         },
         "domains": ["xinhuanet.com", "news.cn", "chinadaily.com.cn", "caixinglobal.com",
                      "scmp.com", "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
