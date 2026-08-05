@@ -2,219 +2,149 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>삼성화재 글로벌운영팀 카드뉴스 - {{ report_date }}</title>
-<style>
-  :root {
-    --navy: #0F2A4A;
-    --blue: #1B4F91;
-    --light-blue: #E7F0FB;
-    --gray: #6B7280;
-    --light-gray: #F4F5F7;
-    --white: #FFFFFF;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: "Segoe UI", "Malgun Gothic", Arial, sans-serif;
-    background: var(--light-gray);
-    color: #1F2937;
-  }
-  header.report-header {
-    background: var(--navy);
-    color: var(--white);
-    padding: 28px 40px;
-  }
-  header.report-header h1 { margin: 0 0 6px 0; font-size: 24px; }
-  header.report-header p { margin: 0; color: #C7D6EA; font-size: 14px; }
-
-  /* ---------- 개요(인포그래픽) 섹션 ---------- */
-  .overview-section {
-    padding: 40px 50px;
-    background: var(--white);
-    border-bottom: 8px solid var(--light-gray);
-  }
-  .overview-section h2 {
-    color: var(--navy);
-    font-size: 20px;
-    margin: 0 0 20px 0;
-  }
-  .overview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-  }
-  .overview-card {
-    background: var(--light-blue);
-    border-left: 5px solid var(--blue);
-    border-radius: 8px;
-    padding: 16px 18px;
-  }
-  .overview-card .oc-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .overview-card .oc-country {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--blue);
-  }
-  .overview-card .oc-stars { color: #F59E0B; font-size: 13px; }
-  .overview-card .oc-headline {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1.4;
-    margin-bottom: 4px;
-  }
-  .overview-card .oc-headline-ko {
-    font-size: 13px;
-    color: #374151;
-    margin-bottom: 6px;
-  }
-  .overview-empty {
-    color: var(--gray);
-    font-size: 14px;
-  }
-
-  .card {
-    min-height: 100vh;
-    padding: 48px 60px;
-    border-bottom: 1px solid #E5E7EB;
-    page-break-after: always;
-    background: var(--white);
-  }
-  .card-meta-row {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 18px;
-  }
-  .badge {
-    display: inline-block;
-    background: var(--blue);
-    color: var(--white);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 20px;
-  }
-  .badge-samsung {
-    background: #B91C1C;
-    margin-bottom: 14px;
-  }
-  .country-tag {
-    color: var(--gray);
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .stars { color: #F59E0B; font-size: 18px; letter-spacing: 2px; }
-  h2.headline {
-    font-size: 26px;
-    color: var(--navy);
-    margin: 10px 0 6px 0;
-    line-height: 1.35;
-  }
-  .headline-ko {
-    font-size: 17px;
-    color: #374151;
-    margin: 0 0 20px 0;
-  }
-  .local-time { color: var(--gray); font-size: 13px; margin-bottom: 4px; }
-  .summary-box {
-    background: var(--light-blue);
-    border-left: 4px solid var(--blue);
-    padding: 20px 24px;
-    border-radius: 6px;
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 20px;
-    color: #1F2937;
-  }
-  .why-box {
-    background: var(--light-gray);
-    padding: 16px 20px;
-    border-radius: 6px;
-    font-size: 15px;
-    margin-bottom: 20px;
-  }
-  .why-box strong { color: var(--blue); }
-  .footer-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: var(--gray);
-    border-top: 1px solid #E5E7EB;
-    padding-top: 14px;
-    margin-top: 30px;
-  }
-  a { color: var(--blue); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .empty-card { display: flex; align-items: center; justify-content: center; }
-  .empty-card p { font-size: 20px; color: var(--gray); }
-
-  @media print {
-    .card { page-break-after: always; min-height: 100vh; }
-    body { background: var(--white); }
-  }
-</style>
 </head>
-<body>
+<body style="margin:0; padding:0; background-color:#F4F5F7; font-family: 'Malgun Gothic', 'Segoe UI', Arial, sans-serif;">
 
-<header class="report-header">
-  <h1>삼성화재 글로벌운영팀 카드뉴스</h1>
-  <p>{{ report_date }} 생성 · 미국 / 영국·유럽 / 싱가포르 / 베트남 / 인도네시아 / 중국</p>
-</header>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F4F5F7;">
+<tr>
+<td align="center">
+<table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" style="width:700px; max-width:700px; background-color:#FFFFFF;">
 
-<section class="overview-section">
-  <h2>오늘의 핵심 뉴스 한눈에 보기</h2>
-  {% if overview_articles %}
-  <div class="overview-grid">
-    {% for a in overview_articles %}
-    <div class="overview-card">
-      <div class="oc-top">
-        <span class="oc-country">{{ a.country }}</span>
-        <span class="oc-stars">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</span>
-      </div>
-      <div class="oc-headline">{{ a.title }}</div>
-      {% if a.headline_ko %}<div class="oc-headline-ko">{{ a.headline_ko }}</div>{% endif %}
-    </div>
+  <!-- ===== 헤더 ===== -->
+  <tr>
+    <td bgcolor="#0F2A4A" style="background-color:#0F2A4A; padding:28px 40px;">
+      <div style="color:#FFFFFF; font-size:24px; font-weight:bold; margin-bottom:6px;">삼성화재 글로벌운영팀 카드뉴스</div>
+      <div style="color:#C7D6EA; font-size:13px;">{{ report_date }} 생성 · 미국 / 영국·유럽 / 싱가포르 / 베트남 / 인도네시아 / 중국</div>
+    </td>
+  </tr>
+
+  <!-- ===== 개요(오늘의 핵심 뉴스) 섹션 ===== -->
+  <tr>
+    <td style="padding:32px 36px 8px 36px;">
+      <div style="color:#0F2A4A; font-size:19px; font-weight:bold;">오늘의 핵심 뉴스 한눈에 보기</div>
+    </td>
+  </tr>
+
+  {% if overview_by_country %}
+    {% for country, arts in overview_by_country.items() %}
+    <tr>
+      <td style="padding:14px 36px 0 36px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td bgcolor="#1B4F91" style="background-color:#1B4F91; color:#FFFFFF; font-size:13px; font-weight:bold; padding:6px 14px; border-radius:4px;">{{ country }}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    {% for a in arts %}
+    <tr>
+      <td style="padding:8px 36px 0 36px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td bgcolor="#E7F0FB" style="background-color:#E7F0FB; border-left:4px solid #1B4F91; padding:12px 16px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="color:#F59E0B; font-size:13px; padding-bottom:4px;">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</td>
+                </tr>
+                <tr>
+                  <td style="color:#0F2A4A; font-size:14px; font-weight:bold; line-height:1.4; padding-bottom:2px;">{{ a.title }}</td>
+                </tr>
+                {% if a.headline_ko %}
+                <tr>
+                  <td style="color:#374151; font-size:13px; line-height:1.4;">{{ a.headline_ko }}</td>
+                </tr>
+                {% endif %}
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
     {% endfor %}
-  </div>
-  {% else %}
-  <p class="overview-empty">확인된 핵심 뉴스가 없습니다.</p>
-  {% endif %}
-</section>
-
-{% for country, articles in countries.items() %}
-  {% if articles %}
-    {% for a in articles %}
-    <section class="card">
-      {% if a.is_samsung_fire_direct %}
-        <span class="badge badge-samsung">★ 삼성화재 직접 관련</span><br>
-      {% endif %}
-      <div class="card-meta-row">
-        <span class="country-tag">{{ country }}</span>
-      </div>
-      <div class="local-time">현지 시각: {{ a.local_time_display }}</div>
-      <div class="stars">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</div>
-      <h2 class="headline">{{ a.title }}</h2>
-      {% if a.headline_ko %}<p class="headline-ko">{{ a.headline_ko }}</p>{% endif %}
-      <div class="summary-box">{{ a.summary }}</div>
-      <div class="why-box"><strong>왜 중요한가:</strong> {{ a.why_important }}</div>
-      <div class="footer-row">
-        <span>출처: {{ a.source_name }}</span>
-        <a href="{{ a.url }}" target="_blank">원문 보기 →</a>
-      </div>
-    </section>
     {% endfor %}
   {% else %}
-    <section class="card empty-card">
-      <p>[{{ country }}] 확인된 뉴스 없음</p>
-    </section>
+    <tr><td style="padding:8px 36px 0 36px; color:#6B7280; font-size:14px;">확인된 핵심 뉴스가 없습니다.</td></tr>
   {% endif %}
-{% endfor %}
+
+  <!-- ===== 개요 / 상세 기사 구분 배너 ===== -->
+  <tr>
+    <td style="padding:32px 0 0 0;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#0F2A4A" style="background-color:#0F2A4A; color:#FFFFFF; font-size:15px; font-weight:bold; padding:12px 36px;">
+            국가별 상세 뉴스
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ===== 국가별 상세 카드 ===== -->
+  {% for country, articles in countries.items() %}
+    {% if articles %}
+      {% for a in articles %}
+      <tr>
+        <td style="padding:28px 36px; border-bottom:10px solid #F4F5F7;">
+
+          {% if a.is_samsung_fire_direct %}
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
+            <tr><td bgcolor="#B91C1C" style="background-color:#B91C1C; color:#FFFFFF; font-size:12px; font-weight:bold; padding:6px 12px; border-radius:12px;">★ 삼성화재 직접 관련</td></tr>
+          </table>
+          {% endif %}
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td align="right" style="color:#6B7280; font-size:13px; font-weight:bold;">{{ country }}</td>
+            </tr>
+          </table>
+
+          <div style="color:#6B7280; font-size:12px; margin-top:8px;">현지 시각: {{ a.local_time_display }}</div>
+          <div style="color:#F59E0B; font-size:16px; letter-spacing:1px; margin-top:4px;">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</div>
+
+          <div style="color:#0F2A4A; font-size:21px; font-weight:bold; line-height:1.35; margin-top:10px;">{{ a.title }}</div>
+          {% if a.headline_ko %}<div style="color:#374151; font-size:15px; margin-top:4px;">{{ a.headline_ko }}</div>{% endif %}
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;">
+            <tr>
+              <td bgcolor="#E7F0FB" style="background-color:#E7F0FB; border-left:4px solid #1B4F91; padding:16px 18px; color:#1F2937; font-size:15px; line-height:1.7;">
+                {{ a.summary }}
+              </td>
+            </tr>
+          </table>
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;">
+            <tr>
+              <td bgcolor="#F4F5F7" style="background-color:#F4F5F7; padding:14px 18px; font-size:14px; color:#1F2937;">
+                <strong style="color:#1B4F91;">왜 중요한가:</strong> {{ a.why_important }}
+              </td>
+            </tr>
+          </table>
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px; border-top:1px solid #E5E7EB;">
+            <tr>
+              <td style="padding-top:12px; font-size:12px; color:#6B7280;">출처: {{ a.source_name }}</td>
+              <td align="right" style="padding-top:12px; font-size:12px;"><a href="{{ a.url }}" target="_blank" style="color:#1B4F91; text-decoration:none;">원문 보기 →</a></td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td style="padding:28px 36px; border-bottom:10px solid #F4F5F7; text-align:center; color:#6B7280; font-size:16px;">
+          [{{ country }}] 확인된 뉴스 없음
+        </td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+
+</table>
+</td>
+</tr>
+</table>
 
 </body>
 </html>
