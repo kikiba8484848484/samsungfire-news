@@ -58,13 +58,12 @@ BLOCKED_DOMAINS_KEYWORDS = [
 # 국가별 허용 소스 (뉴스 도메인) - GDELT domain 필터 및 RSS 매칭에 사용
 # ------------------------------------------------------------------
 COUNTRY_SOURCES = {
-    "미국": {
+   "미국": {
         "rss": {
             "CNBC Business": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147",
             "Fortune": "https://fortune.com/feed/",
-            "Insurance Journal": "https://www.insurancejournal.com/feed/",
         },
-        "domains": ["cnbc.com", "fortune.com", "businessinsider.com", "insurancejournal.com", "marketwatch.com",
+        "domains": ["cnbc.com", "fortune.com", "businessinsider.com", "marketwatch.com",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "Federal Reserve": "https://www.federalreserve.gov/feeds/press_all.xml",
