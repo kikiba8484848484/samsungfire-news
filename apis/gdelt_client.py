@@ -17,9 +17,9 @@ from news.models import Article
 
 GDELT_ENDPOINT = "https://api.gdeltproject.org/api/v2/doc/doc"
 
-MAX_RETRIES = 3
-RETRY_BACKOFF_SECONDS = [3, 6, 12]  # 429/일시 오류 시 순서대로 대기 후 재시도
-MIN_INTERVAL_SECONDS = 1.5  # 매 요청 전 최소 이 정도는 쉬어서 애초에 429를 덜 유발
+MAX_RETRIES = 1
+RETRY_BACKOFF_SECONDS = [3]  # 429/일시 오류 시 한 번만 짧게 재시도 (계속 실패하면 빨리 포기)
+MIN_INTERVAL_SECONDS = 1.0  # 매 요청 전 최소 이 정도는 쉬어서 애초에 429를 덜 유발
 
 _last_request_time = 0.0
 
