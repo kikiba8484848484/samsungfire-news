@@ -58,7 +58,7 @@ BLOCKED_DOMAINS_KEYWORDS = [
 # 국가별 허용 소스 (뉴스 도메인) - GDELT domain 필터 및 RSS 매칭에 사용
 # ------------------------------------------------------------------
 COUNTRY_SOURCES = {
-   "미국": {
+    "미국": {
         "rss": {
             "CNBC Business": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147",
             "Fortune": "https://fortune.com/feed/",
@@ -67,7 +67,6 @@ COUNTRY_SOURCES = {
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "Federal Reserve": "https://www.federalreserve.gov/feeds/press_all.xml",
-            "NAIC": "https://content.naic.org/rss.xml",
         },
     },
     "영국/유럽": {
@@ -90,21 +89,16 @@ COUNTRY_SOURCES = {
         },
         "domains": ["channelnewsasia.com", "sbr.com.sg", "todayonline.com", "ibtimes.sg", "insurancebusinessmag.com",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
-        "regulators": {
-            "MAS": "https://www.mas.gov.sg/rss-feed",
-        },
+        "regulators": {},
     },
     "베트남": {
         "rss": {
             "Vietnam News": "https://vietnamnews.vn/rss/economy.rss",
             "VnExpress International": "https://e.vnexpress.net/rss/business.rss",
-            "Vietnam Investment Review": "https://vir.com.vn/rss/home.rss",
         },
         "domains": ["vietnamnews.vn", "e.vnexpress.net", "vir.com.vn", "vietnamplus.vn", "hanoitimes.vn",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
-        "regulators": {
-            "State Bank of Vietnam": "https://sbv.gov.vn/webcenter/portal/en/home/sbv/news/rss",
-        },
+        "regulators": {},
     },
     "인도네시아": {
         "rss": {
@@ -112,9 +106,7 @@ COUNTRY_SOURCES = {
         },
         "domains": ["antaranews.com", "jakartaglobe.id", "en.tempo.co", "kontan.co.id", "insurancebusinessmag.com",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
-        "regulators": {
-            "OJK": "https://www.ojk.go.id/en/berita-dan-kegiatan/siaran-pers/default.aspx",
-        },
+        "regulators": {},
     },
     "중국": {
         "rss": {
@@ -123,9 +115,7 @@ COUNTRY_SOURCES = {
         },
         "domains": ["xinhuanet.com", "news.cn", "chinadaily.com.cn", "ecns.cn", "globaltimes.cn",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
-        "regulators": {
-            "PBOC": "http://www.pbc.gov.cn/rss/rss.xml",
-        },
+        "regulators": {},
     },
 }
 
@@ -146,8 +136,9 @@ SEARCH_KEYWORD_GROUPS = [
 ]
 
 # 최종 카드뉴스에 반영할 기준
-MIN_IMPORTANCE_STARS = 2          # 이 미만(1~2점) 기사는 최종 결과에서 제외
+MIN_IMPORTANCE_STARS = 2          # 이 미만(1점) 기사는 최종 결과에서 제외
 MAX_ARTICLES_PER_COUNTRY_COLLECT = 8  # 요약 전, 국가별로 넉넉히 수집해둘 후보 수
 MAX_ARTICLES_PER_COUNTRY = 3      # 요약/중요도 산정 후, 국가별 PPT에 실을 최종 개수
 TOP_N_OVERALL_FOR_OVERVIEW = 5    # 인포그래픽 개요 페이지에 실을 전체 중 상위 개수
+LOCAL_AFFAIRS_MIN_SIGNIFICANCE = 3  # 이 미만이면 그 나라는 '현지 정세 TOP' 섹션에서 제외(억지로 안 채움)
 LOOKBACK_HOURS = 24

@@ -14,7 +14,7 @@ def _group_by_country(overview_articles: list) -> "OrderedDict":
     return grouped
 
 
-def render_html(articles_by_country: dict, overview_articles: list) -> Path:
+def render_html(articles_by_country: dict, overview_articles: list, local_affairs_top1: dict) -> Path:
     env = Environment(loader=FileSystemLoader(str(TEMPLATE_DIR)))
     template = env.get_template("cardnews.html.j2")
 
@@ -23,6 +23,7 @@ def render_html(articles_by_country: dict, overview_articles: list) -> Path:
         report_date=report_date,
         countries=articles_by_country,
         overview_by_country=_group_by_country(overview_articles),
+        local_affairs_top1=local_affairs_top1,
     )
 
     out_path = OUTPUT_HTML_DIR / f"cardnews_{report_date}.html"

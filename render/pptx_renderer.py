@@ -121,7 +121,74 @@ def _add_empty_slide(prs: Presentation, country: str) -> None:
     tb.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
 
 
-def render_pptx(articles_by_country: dict) -> Path:
+def _add_section_divider_slide(prs: Presentation, title: str) -> None:
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    bg = slide.shapes.add_shape(1, 0, 0, SLIDE_W, SLIDE_H)
+    bg.fill.solid()
+    bg.fill.fore_color.rgb = RGBColor(0x37, 0x41, 0x51)
+    bg.line.fill.background()
+
+    tb = slide.shapes.add_textbox(Inches(0.8), Inches(3.2), Inches(11.7), Inches(1.2))
+    tb.text_frame.text = title
+    tb.text_frame.paragraphs[0].font.size = Pt(30)
+    tb.text_frame.paragraphs[0].font.bold = True
+    tb.text_frame.paragraphs[0].font.color.rgb = WHITE
+
+
+def _add_local_affairs_slide(prs: Presentation, country: str, article) -> None:
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    bg = slide.shapes.add_shape(1, 0, 0, SLIDE_W, SLIDE_H)
+    bg.fill.solid()
+    bg.fill.fore_color.rgb = WHITE
+    bg.line.fill.background()
+
+    y = Inches(0.4)
+    meta = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.4))
+    meta.text_frame.text = f"{country}    |    현지 정세 중요도 {article.local_significance}/5    |    {article.local_time_display}"
+    meta.text_frame.paragraphs[0].font.size = Pt(12)
+    meta.text_frame.paragraphs[0].font.color.rgb = GRAY
+    y += Inches(0.55)
+
+    headline = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.85))
+    headline.text_frame.word_wrap = True
+    headline.text_frame.text = article.title
+    headline.text_frame.paragraphs[0].font.size = Pt(22)
+    headline.text_frame.paragraphs[0].font.bold = True
+    headline.text_frame.paragraphs[0].font.color.rgb = NAVY
+    y += Inches(0.9)
+
+    if getattr(article, "headline_ko", ""):
+        headline_ko = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.5))
+        headline_ko.text_frame.word_wrap = True
+        headline_ko.text_frame.text = article.headline_ko
+        headline_ko.text_frame.paragraphs[0].font.size = Pt(15)
+        headline_ko.text_frame.paragraphs[0].font.color.rgb = RGBColor(0x37, 0x41, 0x51)
+        y += Inches(0.5)
+
+    summary_box = slide.shapes.add_shape(1, Inches(0.5), y, Inches(12.3), Inches(1.8))
+    summary_box.fill.solid()
+    summary_box.fill.fore_color.rgb = RGBColor(0xF4, 0xF5, 0xF7)
+    summary_box.line.fill.background()
+    sf = summary_box.text_frame
+    sf.word_wrap = True
+    sf.text = article.summary
+    sf.paragraphs[0].font.size = Pt(14)
+    sf.paragraphs[0].font.color.rgb = RGBColor(0x1F, 0x29, 0x37)
+    y += Inches(2.0)
+
+    why = slide.shapes.add_textbox(Inches(0.5), y, Inches(12.3), Inches(0.8))
+    why.text_frame.word_wrap = True
+    why.text_frame.text = f"주목 포인트: {article.why_notable_locally}"
+    why.text_frame.paragraphs[0].font.size = Pt(13)
+    why.text_frame.paragraphs[0].font.color.rgb = RGBColor(0x1F, 0x29, 0x37)
+
+    footer = slide.shapes.add_textbox(Inches(0.5), Inches(7.0), Inches(12.3), Inches(0.4))
+    footer.text_frame.text = f"출처: {article.source_name}   |   원문: {article.url}"
+    footer.text_frame.paragraphs[0].font.size = Pt(10)
+    footer.text_frame.paragraphs[0].font.color.rgb = GRAY
+
+
+def render_pptx(articles_by_country: dict, local_affairs_top1: dict = None) -> Path:
     prs = Presentation()
     prs.slide_width = SLIDE_W
     prs.slide_height = SLIDE_H
@@ -135,6 +202,11 @@ def render_pptx(articles_by_country: dict) -> Path:
                 _add_card_slide(prs, country, a)
         else:
             _add_empty_slide(prs, country)
+
+    if local_affairs_top1:
+        _add_section_divider_slide(prs, "국가별 현지 정세 TOP 뉴스\n(정치·경제·사건사고)")
+        for country, article in local_affairs_top1.items():
+            _add_local_affairs_slide(prs, country, article)
 
     out_path = OUTPUT_PPTX_DIR / f"cardnews_{report_date}.pptx"
     prs.save(str(out_path))

@@ -5,6 +5,7 @@ from settings import (
     MAX_ARTICLES_PER_COUNTRY,
     MIN_IMPORTANCE_STARS,
     TOP_N_OVERALL_FOR_OVERVIEW,
+    LOCAL_AFFAIRS_MIN_SIGNIFICANCE,
 )
 
 
@@ -60,3 +61,23 @@ def top_n_overall(articles_by_country: Dict[str, List[Article]], n: int = None) 
     all_articles = [a for arts in articles_by_country.values() for a in arts]
     all_articles.sort(key=lambda a: (-a.importance_stars, a.priority_rank))
     return all_articles[:n]
+
+
+def top1_local_affairs_per_country(articles_by_country: Dict[str, List[Article]],
+                                    min_significance: int = None) -> Dict[str, Article]:
+    """
+    삼성화재 관련성과 무관하게, 국가별로 '현지 정치/경제/사건사고' 관점에서
+    가장 주목할 만한 기사 1건을 뽑는다. 삼성화재 관련성 필터(finalize_after_summary) 이전의
+    전체 후보군을 대상으로 해야 하므로, main.py에서 요약 직후(필터링 전) 이 함수를 호출해야 한다.
+    min_significance 미만인 국가는 결과에서 제외한다(억지로 채우지 않음).
+    """
+    if min_significance is None:
+        min_significance = LOCAL_AFFAIRS_MIN_SIGNIFICANCE
+    result: Dict[str, Article] = {}
+    for country, articles in articles_by_country.items():
+        if not articles:
+            continue
+        best = max(articles, key=lambda a: (a.local_significance, _ts(a.published_at)))
+        if best.local_significance >= min_significance:
+            result[country] = best
+    return result

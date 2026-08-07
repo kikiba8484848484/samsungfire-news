@@ -22,6 +22,10 @@ class Article:
     why_important: str = ""
     headline_ko: str = ""
 
+    # 현지 정세(정치/경제/사건사고) 중요도 - 삼성화재 관련성과는 별개 기준
+    local_significance: int = 0
+    why_notable_locally: str = ""
+
     # 렌더링 단계에서 채워짐
     local_time_display: str = ""
     keyword_label: str = ""
