@@ -3,7 +3,7 @@ from pathlib import Path
 from collections import OrderedDict
 from jinja2 import Environment, FileSystemLoader
 
-from settings import TEMPLATE_DIR, OUTPUT_HTML_DIR
+from settings import TEMPLATE_DIR, OUTPUT_HTML_DIR, now_kst
 
 
 def _group_by_country(overview_articles: list) -> "OrderedDict":
@@ -18,7 +18,7 @@ def render_html(articles_by_country: dict, overview_articles: list, local_affair
     env = Environment(loader=FileSystemLoader(str(TEMPLATE_DIR)))
     template = env.get_template("cardnews.html.j2")
 
-    report_date = datetime.now().strftime("%Y-%m-%d")
+    report_date = now_kst().strftime("%Y-%m-%d")
     html = template.render(
         report_date=report_date,
         countries=articles_by_country,
