@@ -23,7 +23,7 @@ def send_report_email(html_path: Path, pptx_path: Path) -> bool:
         logger.error("RECEIVER_EMAIL에 유효한 주소가 없어 발송을 건너뜁니다.")
         return False
 
-    today = datetime.now()
+    today = now_kst()
     subject_date = today.strftime("%y%m%d")  # 예: 260729
     msg = MIMEMultipart("mixed")
     msg["Subject"] = f"삼성화재 글로벌운영팀 카드뉴스 {subject_date}"
