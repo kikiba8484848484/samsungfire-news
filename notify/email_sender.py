@@ -4,9 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from pathlib import Path
-from datetime import datetime
-
-from settings import GMAIL_ADDRESS, GMAIL_APP_PASSWORD, RECEIVER_EMAIL
+from settings import GMAIL_ADDRESS, GMAIL_APP_PASSWORD, RECEIVER_EMAIL, now_kst
 
 logger = logging.getLogger("email_sender")
 
