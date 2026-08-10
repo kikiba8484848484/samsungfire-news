@@ -4,8 +4,22 @@
 """
 import os
 from pathlib import Path
+from datetime import datetime
+import pytz
 
 BASE_DIR = Path(__file__).resolve().parent
+
+KST = pytz.timezone("Asia/Seoul")
+
+
+def now_kst() -> datetime:
+    """
+    GitHub Actions 서버는 UTC 기준으로 동작하기 때문에, 그냥 datetime.now()를 쓰면
+    '오늘 날짜'가 한국 기준과 다르게(하루 전으로) 계산될 수 있다.
+    이메일 제목/파일명 등 '받는 사람이 체감하는 날짜'가 중요한 곳에서는
+    반드시 이 함수를 사용해 한국시간 기준으로 날짜를 계산한다.
+    """
+    return datetime.now(KST)
 
 # ------------------------------------------------------------------
 # API 키 (GitHub Secrets -> 환경변수로 주입됨)
