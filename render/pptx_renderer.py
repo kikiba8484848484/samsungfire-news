@@ -6,7 +6,7 @@ from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
 
-from settings import OUTPUT_PPTX_DIR
+from settings import OUTPUT_PPTX_DIR, now_kst
 
 NAVY = RGBColor(0x0F, 0x2A, 0x4A)
 BLUE = RGBColor(0x1B, 0x4F, 0x91)
@@ -193,7 +193,7 @@ def render_pptx(articles_by_country: dict, local_affairs_top1: dict = None) -> P
     prs.slide_width = SLIDE_W
     prs.slide_height = SLIDE_H
 
-    report_date = datetime.now().strftime("%Y-%m-%d")
+    report_date = now_kst().strftime("%Y-%m-%d")
     _add_title_slide(prs, report_date)
 
     for country, articles in articles_by_country.items():
