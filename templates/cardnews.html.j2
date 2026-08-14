@@ -12,7 +12,6 @@
 <td align="center">
 <table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" style="width:700px; max-width:700px; background-color:#FFFFFF;">
 
-  <!-- ===== 헤더 ===== -->
   <tr>
     <td bgcolor="#0F2A4A" style="background-color:#0F2A4A; padding:28px 40px;">
       <div style="color:#FFFFFF; font-size:24px; font-weight:bold; margin-bottom:6px;">삼성화재 글로벌운영팀 카드뉴스</div>
@@ -20,99 +19,8 @@
     </td>
   </tr>
 
-  <!-- ===== 개요(오늘의 핵심 뉴스) 섹션 ===== -->
   <tr>
-    <td style="padding:32px 36px 8px 36px;">
-      <div style="color:#0F2A4A; font-size:19px; font-weight:bold;">오늘의 핵심 뉴스 한눈에 보기</div>
-    </td>
-  </tr>
-
-  {% if overview_by_country %}
-    {% for country, arts in overview_by_country.items() %}
-    <tr>
-      <td style="padding:14px 36px 0 36px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td bgcolor="#1B4F91" style="background-color:#1B4F91; color:#FFFFFF; font-size:13px; font-weight:bold; padding:6px 14px; border-radius:4px;">{{ country }}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    {% for a in arts %}
-    <tr>
-      <td style="padding:8px 36px 0 36px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td bgcolor="#E7F0FB" style="background-color:#E7F0FB; border-left:4px solid #1B4F91; padding:12px 16px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td style="color:#F59E0B; font-size:13px; padding-bottom:4px;">{{ "★" * a.importance_stars }}{{ "☆" * (5 - a.importance_stars) }}</td>
-                </tr>
-                <tr>
-                  <td style="color:#0F2A4A; font-size:14px; font-weight:bold; line-height:1.4; padding-bottom:2px;">{{ a.title }}</td>
-                </tr>
-                {% if a.headline_ko %}
-                <tr>
-                  <td style="color:#374151; font-size:13px; line-height:1.4;">{{ a.headline_ko }}</td>
-                </tr>
-                {% endif %}
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    {% endfor %}
-    {% endfor %}
-  {% else %}
-    <tr><td style="padding:8px 36px 0 36px; color:#6B7280; font-size:14px;">확인된 핵심 뉴스가 없습니다.</td></tr>
-  {% endif %}
-
-  <!-- ===== 현지 정세(정치/경제/사건사고) TOP1 섹션 ===== -->
-  <tr>
-    <td style="padding:32px 0 0 0;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td bgcolor="#374151" style="background-color:#374151; color:#FFFFFF; font-size:15px; font-weight:bold; padding:12px 36px;">
-            국가별 현지 정세 TOP 뉴스 (정치·경제·사건사고)
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  {% if local_affairs_top1 %}
-    {% for country, a in local_affairs_top1.items() %}
-    <tr>
-      <td style="padding:14px 36px 0 36px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td bgcolor="#F4F5F7" style="background-color:#F4F5F7; border-left:4px solid #374151; padding:14px 18px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td style="color:#374151; font-size:13px; font-weight:bold; padding-bottom:4px;">{{ country }} · 현지중요도 {{ a.local_significance }}/5</td>
-                </tr>
-                <tr>
-                  <td style="color:#0F2A4A; font-size:14px; font-weight:bold; line-height:1.4; padding-bottom:2px;">{{ a.title }}</td>
-                </tr>
-                {% if a.headline_ko %}
-                <tr><td style="color:#374151; font-size:13px; line-height:1.4; padding-bottom:4px;">{{ a.headline_ko }}</td></tr>
-                {% endif %}
-                <tr><td style="color:#1F2937; font-size:13px; line-height:1.6; padding-bottom:4px;">{{ a.summary }}</td></tr>
-                <tr><td style="color:#6B7280; font-size:12px;">{{ a.why_notable_locally }} · <a href="{{ a.url }}" target="_blank" style="color:#1B4F91;">원문 보기 →</a></td></tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    {% endfor %}
-  {% else %}
-    <tr><td style="padding:8px 36px 0 36px; color:#6B7280; font-size:14px;">오늘 확인된 특이 정세 뉴스가 없습니다.</td></tr>
-  {% endif %}
-
-  <!-- ===== 개요 / 상세 기사 구분 배너 ===== -->
-  <tr>
-    <td style="padding:32px 0 0 0;">
+    <td style="padding:0;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td bgcolor="#0F2A4A" style="background-color:#0F2A4A; color:#FFFFFF; font-size:15px; font-weight:bold; padding:12px 36px;">
@@ -123,7 +31,6 @@
     </td>
   </tr>
 
-  <!-- ===== 국가별 상세 카드 ===== -->
   {% for country, articles in countries.items() %}
     {% if articles %}
       {% for a in articles %}
@@ -182,6 +89,47 @@
       </tr>
     {% endif %}
   {% endfor %}
+
+  <tr>
+    <td style="padding:0;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#374151" style="background-color:#374151; color:#FFFFFF; font-size:15px; font-weight:bold; padding:12px 36px;">
+            국가별 현지 정세 TOP 뉴스 (정치·경제·사건사고)
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {% if local_affairs_top1 %}
+    {% for country, a in local_affairs_top1.items() %}
+    <tr>
+      <td style="padding:20px 36px; border-bottom:10px solid #F4F5F7;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td bgcolor="#F4F5F7" style="background-color:#F4F5F7; border-left:4px solid #374151; padding:14px 18px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="color:#374151; font-size:13px; font-weight:bold; padding-bottom:4px;">{{ country }} · 현지중요도 {{ a.local_significance }}/5</td>
+                </tr>
+                <tr>
+                  <td style="color:#0F2A4A; font-size:15px; font-weight:bold; line-height:1.4; padding-bottom:2px;">{{ a.title }}</td>
+                </tr>
+                {% if a.headline_ko %}
+                <tr><td style="color:#374151; font-size:13px; line-height:1.4; padding-bottom:4px;">{{ a.headline_ko }}</td></tr>
+                {% endif %}
+                <tr><td style="color:#1F2937; font-size:13px; line-height:1.6; padding-bottom:4px;">{{ a.summary }}</td></tr>
+                <tr><td style="color:#6B7280; font-size:12px;">{{ a.why_notable_locally }} · <a href="{{ a.url }}" target="_blank" style="color:#1B4F91;">원문 보기 →</a></td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    {% endfor %}
+  {% else %}
+    <tr><td style="padding:20px 36px; color:#6B7280; font-size:14px;">오늘 확인된 특이 정세 뉴스가 없습니다.</td></tr>
+  {% endif %}
 
 </table>
 </td>
