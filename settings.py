@@ -78,6 +78,7 @@ COUNTRY_SOURCES = {
             "Fortune": "https://fortune.com/feed/",
         },
         "domains": ["cnbc.com", "fortune.com", "businessinsider.com", "marketwatch.com",
+                     "naic.org", "dfs.ny.gov", "nj.gov",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "Federal Reserve": "https://www.federalreserve.gov/feeds/press_all.xml",
@@ -86,10 +87,11 @@ COUNTRY_SOURCES = {
     "영국/유럽": {
         "rss": {
             "BBC Business": "https://feeds.bbci.co.uk/news/business/rss.xml",
+            "The Guardian Business": "https://www.theguardian.com/uk/business/rss",
             "Insurance Business UK": "https://www.insurancebusinessmag.com/uk/rss/",
             "Euronews Business": "https://www.euronews.com/rss?level=theme&name=business",
         },
-        "domains": ["bbc.com", "bbc.co.uk", "insurancebusinessmag.com", "euronews.com", "insurancetimes.co.uk",
+        "domains": ["bbc.com", "bbc.co.uk", "theguardian.com", "insurancebusinessmag.com", "euronews.com", "insurancetimes.co.uk",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {
             "Bank of England / PRA": "https://www.bankofengland.co.uk/rss/news",
@@ -102,6 +104,7 @@ COUNTRY_SOURCES = {
             "IBTimes Singapore": "https://www.ibtimes.sg/rss",
         },
         "domains": ["channelnewsasia.com", "sbr.com.sg", "todayonline.com", "ibtimes.sg", "insurancebusinessmag.com",
+                     "mas.gov.sg", "gia.org.sg",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {},
     },
@@ -111,6 +114,7 @@ COUNTRY_SOURCES = {
             "VnExpress International": "https://e.vnexpress.net/rss/business.rss",
         },
         "domains": ["vietnamnews.vn", "e.vnexpress.net", "vir.com.vn", "vietnamplus.vn", "hanoitimes.vn",
+                     "mof.gov.vn", "iav.vn",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {},
     },
@@ -119,6 +123,7 @@ COUNTRY_SOURCES = {
             "Antara News": "https://en.antaranews.com/rss/news.xml",
         },
         "domains": ["antaranews.com", "jakartaglobe.id", "en.tempo.co", "kontan.co.id", "insurancebusinessmag.com",
+                     "ojk.go.id", "aaui.or.id",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {},
     },
@@ -128,11 +133,11 @@ COUNTRY_SOURCES = {
             "ECNS (China News Service)": "http://www.ecns.cn/rss/rss.xml",
         },
         "domains": ["xinhuanet.com", "news.cn", "chinadaily.com.cn", "ecns.cn", "globaltimes.cn",
+                     "nfra.gov.cn", "pbc.gov.cn",
                      "reuters.com", "apnews.com", "bloomberg.com", "afp.com"],
         "regulators": {},
     },
 }
-
 # ------------------------------------------------------------------
 # 검색 우선순위 키워드 (① ~ ⑤)
 # ------------------------------------------------------------------
